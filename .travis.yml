@@ -2,7 +2,7 @@ language: android
 dist: trusty
 before_install:
   - chmod +x gradlew
-  - yes | sdkmanager "platforms;android-30"
+  - yes | sdkmanager "platforms;android-21"
 android:
     components:
     - build-tools-21.1.2
