@@ -1,5 +1,5 @@
-sudo: required
 language: android
+os: linux
 dist: trusty
 
 android:
