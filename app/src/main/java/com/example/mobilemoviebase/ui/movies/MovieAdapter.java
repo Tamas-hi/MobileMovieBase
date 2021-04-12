@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,12 +19,9 @@ import java.util.List;
 
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
-
-    private Context context;
     private List<Movie> moviesList;
 
-    public MovieAdapter(Context context, List<Movie> moviesList){
-        this.context = context;
+    public MovieAdapter(List<Movie> moviesList){
         this.moviesList = moviesList;
     }
 
@@ -37,9 +36,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull MovieAdapter.ViewHolder holder, int position) {
         Movie movie = moviesList.get(position);
-        holder.movieTitle.setText(movie.getTitle());
-        holder.movieDirector.setText(movie.getDirector());
-        holder.movieReleaseYear.setText(String.valueOf(movie.getYear()));
+        holder.TextViewMovie.setText(movie.getTitle());
+        holder.TextViewDirector.setText(movie.getDirector());
+        holder.TextViewReleaseYear.setText(String.valueOf(movie.getYear()));
     }
 
     @Override
@@ -48,15 +47,38 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     }
 
     protected static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView movieTitle;
-        public TextView movieDirector;
-        public TextView movieReleaseYear;
+        public TextView TextViewMovie;
+        public TextView TextViewDirector;
+        public TextView TextViewReleaseYear;
+        public Button btnDetails;
+        public ImageButton btnDelete;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            movieTitle = (TextView) itemView.findViewById(R.id.movieTitle);
-            movieDirector = (TextView) itemView.findViewById(R.id.movieDirector);
-            movieReleaseYear = (TextView) itemView.findViewById(R.id.movieYear);
+            TextViewMovie = (TextView) itemView.findViewById(R.id.movieTitle);
+            TextViewDirector = (TextView) itemView.findViewById(R.id.movieDirector);
+            TextViewReleaseYear = (TextView) itemView.findViewById(R.id.movieYear);
+            btnDetails = (Button) itemView.findViewById(R.id.btnDetails);
+            btnDelete = (ImageButton) itemView.findViewById(R.id.btnDelete);
+
+            // TODO handle movieDetails click
+
+            btnDetails.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+
+            // TODO handle movieDelete click
+
+            btnDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
         }
     }
 }

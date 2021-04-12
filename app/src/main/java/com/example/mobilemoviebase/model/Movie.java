@@ -14,6 +14,15 @@ public class Movie {
 
     private String imageUrl;
 
+    public Movie(String title, String director, int year, int length, String plot, String imageUrl) {
+        this.title = title;
+        this.director = director;
+        this.year = year;
+        this.length = length;
+        this.plot = plot;
+        this.imageUrl = imageUrl;
+    }
+
     public String getTitle() {
         return title;
     }
