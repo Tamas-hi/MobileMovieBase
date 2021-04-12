@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MobileMovieBase</string>
+    <string name="movie_lovers">movie_lovers</string>
+    <string name="fab">fab</string>
+    <string name="search_movies_by_title">Search movies by title</string>
+    <string name="deleteicon">deleteIcon</string>
+    <string name="details">Details</string>
 </resources>
