@@ -71,6 +71,11 @@ public class MovieActivity extends AppCompatActivity implements MovieScreen {
     }
 
     @Override
+    public void showMoviesInList(List<Movie> movies) {
+
+    }
+
+    @Override
     public void showMovies(String movieSearchTerm) {
 
     }

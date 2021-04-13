@@ -1,5 +1,6 @@
 package com.example.mobilemoviebase;
 
+import com.example.mobilemoviebase.interactor.movies.MoviesInteractor;
 import com.example.mobilemoviebase.ui.UIModule;
 import com.example.mobilemoviebase.ui.about.AboutActivity;
 import com.example.mobilemoviebase.ui.details.DetailsActivity;
@@ -16,9 +17,9 @@ public interface MobileMovieBaseApplicationComponent {
 
     void inject(MovieActivity movieActivity);
 
-    void inject(MoviePresenter moviePresenter);
-
     void inject(DetailsActivity detailsActivity);
 
     void inject(AboutActivity aboutActivity);
+
+    void inject(MoviesInteractor moviesInteractor);
 }

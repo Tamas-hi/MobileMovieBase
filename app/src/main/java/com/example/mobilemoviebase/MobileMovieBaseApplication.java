@@ -11,6 +11,6 @@ public class MobileMovieBaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        injector = DaggerMobileMovieBaseApplicationComponent.builder().uiModule(new UIModule(this)).build();
+        injector = DaggerMobileMovieBaseApplicationComponent.builder().uIModule(new UIModule(this)).build();
     }
 }
