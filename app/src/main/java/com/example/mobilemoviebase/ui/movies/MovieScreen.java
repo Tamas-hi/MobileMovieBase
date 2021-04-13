@@ -9,6 +9,4 @@ public interface MovieScreen {
     void showMovies(String movieSearchTerm);
 
     void showMoviesInList(List<Movie> movies);
-
-    void showNetworkError(String errorMsg);
 }
