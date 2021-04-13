@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.mobilemoviebase.MobileMovieBaseApplication;
 import com.example.mobilemoviebase.R;
 import com.example.mobilemoviebase.model.Movie;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -15,8 +16,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class MovieActivity extends AppCompatActivity implements MovieScreen {
 
+    @Inject
+    MoviePresenter moviePresenter;
     private static MovieAdapter adapter;
     private List<Movie> moviesList;
 
@@ -24,6 +29,7 @@ public class MovieActivity extends AppCompatActivity implements MovieScreen {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
+        MobileMovieBaseApplication.injector.inject(this);
 
         final FloatingActionButton fab = findViewById(R.id.fab);
 
@@ -53,29 +59,24 @@ public class MovieActivity extends AppCompatActivity implements MovieScreen {
     }
 
     @Override
-    public void showMovies(String movieSearchTerm) {
-        // TODO search for movies
-    }
-
-    @Override
-    public void showMoviesInList(List<Movie> movies) {
-        // TODO show movies in list
-    }
-
-    @Override
-    public void showNetworkError(String errorMsg) {
-        // TODO handling network error
-    }
-
-    @Override
     protected void onStart() {
         super.onStart();
-        MoviePresenter.getInstance().attachScreen(this);
+        moviePresenter.attachScreen(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        MoviePresenter.getInstance().detachScreen();
+        moviePresenter.detachScreen();
+    }
+
+    @Override
+    public void showMoviesInList(List<Movie> movies) {
+
+    }
+
+    @Override
+    public void showMovies(String movieSearchTerm) {
+
     }
 }

@@ -1,19 +1,18 @@
 package com.example.mobilemoviebase.ui.movies;
 
+import android.content.Context;
+
 import com.example.mobilemoviebase.ui.Presenter;
+
+import java.util.concurrent.Executor;
+
+import javax.inject.Inject;
 
 public class MoviePresenter extends Presenter<MovieScreen> {
 
-    private static MoviePresenter instance = null;
+    @Inject
+    public MoviePresenter(){
 
-    private MoviePresenter() {
-    }
-
-    public static MoviePresenter getInstance() {
-        if (instance == null) {
-            instance = new MoviePresenter();
-        }
-        return instance;
     }
 
     @Override
@@ -26,7 +25,7 @@ public class MoviePresenter extends Presenter<MovieScreen> {
         super.detachScreen();
     }
 
-    public void showMoviesSearchList(String movieSearchTerm) {
+    public void showMoviesSearchList(String movieSearchTerm){
         screen.showMovies(movieSearchTerm);
     }
 }

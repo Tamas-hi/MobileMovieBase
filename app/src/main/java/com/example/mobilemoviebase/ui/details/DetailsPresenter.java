@@ -1,15 +1,20 @@
 package com.example.mobilemoviebase.ui.details;
 
+import android.telecom.Call;
+
 import com.example.mobilemoviebase.ui.Presenter;
 
-public class DetailsPresenter extends Presenter<DetailsScreen> {
-    private static DetailsPresenter instance = null;
+import javax.inject.Inject;
 
-    public static DetailsPresenter getInstance() {
-        if (instance == null) {
-            instance = new DetailsPresenter();
-        }
-        return instance;
+public class DetailsPresenter extends Presenter<DetailsScreen> {
+
+    @Inject
+    public DetailsPresenter(){
+
+    }
+
+    public void queryMovieDetail(int id){
+
     }
 
     @Override
