@@ -1,0 +1,154 @@
+swagger: "2.0"
+info:
+  description: "This is the MobileMovieBase server."
+  version: "1.0.0"
+  title: "MobileMovieBase"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "hargitomi97@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "movie-database-imdb-alternative.p.rapidapi.com"
+tags:
+- name: "movie"
+  description: "Operations about movie"
+  externalDocs:
+    description: "Find out more"
+    url: "https://rapidapi.com/rapidapi/api/movie-database-imdb-alternative/details"
+schemes:
+- "https"
+- "http"
+security:
+  - APIKeyHeader: []
+paths:
+  /:
+    get:
+      tags:
+      - "movie"
+      summary: "Get movie by title or id"
+      description: "GET call to search movie by title or by IMDB id"
+      operationId: "getMovie"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "s"
+        in: "query"
+        description: "The title to search for"
+        type: "string"
+      - name: "i"
+        in: "query"
+        description: "The IMDB id to search for"
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "string"
+          headers:
+            X-Rate-Limit:
+              type: "integer"
+              format: "int32"
+              description: "calls per hour allowed by the user"
+            X-Expires-After:
+              type: "string"
+              format: "date-time"
+              description: "date in UTC when token expires"
+        "400":
+          description: "Invalid title or id supplied"
+        "404":
+          description: "Movie not found"
+  /addMovie:
+    post:
+      tags:
+      - "movie"
+      summary: "Add movie"
+      description: "POST call to add movie. For demonstration purposes only - API supports only GET"
+      operationId: "addMovie"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Added movie object"
+        required: true
+        schema:
+          $ref: "#/definitions/Movie"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "string"
+          headers:
+            X-Rate-Limit:
+              type: "integer"
+              format: "int32"
+              description: "calls per hour allowed by the user"
+            X-Expires-After:
+              type: "string"
+              format: "date-time"
+              description: "date in UTC when token expires"
+        "404":
+          description: "POST method not supported"
+  /deleteMovie/{id}:
+    delete:
+      tags:
+      - "movie"
+      summary: "Delete movie by id"
+      description: "DELETE call to delete movie. For demonstration purposes only - API supports only GET"
+      operationId: "deleteMovie"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The name that needs to be deleted"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "string"
+          headers:
+            X-Rate-Limit:
+              type: "integer"
+              format: "int32"
+              description: "calls per hour allowed by the user"
+            X-Expires-After:
+              type: "string"
+              format: "date-time"
+              description: "date in UTC when token expires"
+        "400":
+          description: "Invalid movie supplied"
+        "404":
+          description: "DELETE method not supported"
+securityDefinitions:
+  APIKeyHeader:
+     type: apiKey
+     in: header
+     name: x-rapidapi-key
+definitions:
+  Movie:
+    type: "object"
+    properties:
+      imdbId:
+        type: "integer"
+        format: "int64"
+      title:
+        type: "string"
+      director:
+        type: "string"
+      year:
+        type: "integer"
+        format: "int64"
+      length:
+        type: "integer"
+        format: "int64"
+      plot:
+        type: "string"
+      imageUrl:
+        type: "string"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
