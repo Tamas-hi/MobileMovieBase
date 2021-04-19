@@ -49,7 +49,7 @@ public class MovieActivity extends AppCompatActivity implements MovieScreen {
         RecyclerView recyclerView = findViewById(R.id.MainRecyclerView);
         moviesList = new ArrayList<>();
         // TODO connect API and get data
-        moviesList.add(new Movie("Test", "Example director", 1997, 125, "asdasd", "http"));
+        moviesList.add(new Movie("testId", "Test", "Example director", 1997, 125, "asdasd", "http"));
         adapter = new MovieAdapter(moviesList);
         recyclerView.setAdapter(adapter);
 
