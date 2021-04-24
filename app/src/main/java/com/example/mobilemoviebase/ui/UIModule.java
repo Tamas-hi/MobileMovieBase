@@ -2,6 +2,7 @@ package com.example.mobilemoviebase.ui;
 
 import android.content.Context;
 
+import com.example.mobilemoviebase.di.Network;
 import com.example.mobilemoviebase.ui.about.AboutPresenter;
 import com.example.mobilemoviebase.ui.details.DetailsPresenter;
 import com.example.mobilemoviebase.ui.details.DetailsScreen;
@@ -27,6 +28,13 @@ public class UIModule {
     @Provides
     public Context provideContext() {
         return context;
+    }
+
+    @Provides
+    @Singleton
+    @Network
+    public Executor provideNetworkExecutor() {
+        return Executors.newFixedThreadPool(1);
     }
 
 }
