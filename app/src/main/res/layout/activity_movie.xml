@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:iconifiedByDefault="false"
-        android:queryHint="Search movies by title"
+        android:queryHint="Search movieLists by title"
         android:gravity="top"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

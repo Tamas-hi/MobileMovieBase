@@ -17,11 +17,11 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Objects;
 
 /**
- * MovieSearch
+ * MovieProperties
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-23T14:07:28.797Z[GMT]")
-public class Movie {
+public class MovieProperties {
   @SerializedName("Title")
   private String title = null;
 
@@ -37,7 +37,7 @@ public class Movie {
   @SerializedName("Poster")
   private String poster = null;
 
-  public Movie title(String title) {
+  public MovieProperties title(String title) {
     this.title = title;
     return this;
   }
@@ -54,7 +54,7 @@ public class Movie {
     this.title = title;
   }
 
-  public Movie year(String year) {
+  public MovieProperties year(String year) {
     this.year = year;
     return this;
   }
@@ -71,7 +71,7 @@ public class Movie {
     this.year = year;
   }
 
-  public Movie imdbID(String imdbID) {
+  public MovieProperties imdbID(String imdbID) {
     this.imdbID = imdbID;
     return this;
   }
@@ -88,7 +88,7 @@ public class Movie {
     this.imdbID = imdbID;
   }
 
-  public Movie type(String type) {
+  public MovieProperties type(String type) {
     this.type = type;
     return this;
   }
@@ -105,7 +105,7 @@ public class Movie {
     this.type = type;
   }
 
-  public Movie poster(String poster) {
+  public MovieProperties poster(String poster) {
     this.poster = poster;
     return this;
   }
@@ -131,12 +131,12 @@ public class Movie {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Movie movie = (Movie) o;
-    return Objects.equals(this.title, movie.title) &&
-        Objects.equals(this.year, movie.year) &&
-        Objects.equals(this.imdbID, movie.imdbID) &&
-        Objects.equals(this.type, movie.type) &&
-        Objects.equals(this.poster, movie.poster);
+    MovieProperties movieProperties = (MovieProperties) o;
+    return Objects.equals(this.title, movieProperties.title) &&
+        Objects.equals(this.year, movieProperties.year) &&
+        Objects.equals(this.imdbID, movieProperties.imdbID) &&
+        Objects.equals(this.type, movieProperties.type) &&
+        Objects.equals(this.poster, movieProperties.poster);
   }
 
   @Override
@@ -148,7 +148,7 @@ public class Movie {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class MovieSearch {\n");
+    sb.append("class MovieProperties {\n");
     
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    year: ").append(toIndentedString(year)).append("\n");

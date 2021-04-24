@@ -5,8 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobilemoviebase.MobileMovieBaseApplication;
 import com.example.mobilemoviebase.R;
-import com.example.mobilemoviebase.model.Movie;
-import com.example.mobilemoviebase.model.MoviesResult;
+import com.example.mobilemoviebase.model.MovieWithDetails;
 
 import javax.inject.Inject;
 
@@ -23,7 +22,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen 
     }
 
     @Override
-    public void showMovieDetails(MoviesResult movies) {
+    public void showMovieDetails(MovieWithDetails movie) {
 
     }
 
