@@ -1,7 +1,7 @@
 package com.example.mobilemoviebase.ui.details;
 
-import com.example.mobilemoviebase.model.MovieWithDetails;
+import com.example.mobilemoviebase.model.MovieDetails;
 
 public interface DetailsScreen {
-    void showMovieDetails(MovieWithDetails movies);
+    void showMovieDetails(MovieDetails movies);
 }

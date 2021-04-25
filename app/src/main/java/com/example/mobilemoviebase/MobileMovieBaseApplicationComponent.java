@@ -21,4 +21,8 @@ public interface MobileMovieBaseApplicationComponent {
 
     void inject(AboutActivity aboutActivity);
 
+    void inject(MoviesInteractor moviesInteractor);
+
+    void inject(MoviePresenter moviePresenter);
+
 }

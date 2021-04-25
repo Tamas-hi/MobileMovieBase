@@ -47,7 +47,7 @@ paths:
             application/json:
               schema:
                 oneOf:
-                 - $ref: '#/components/schemas/Movie'
+                 - $ref: '#/components/schemas/MovieResult'
                  - $ref: '#/components/schemas/MovieWithDetails'
         404:
           description: Movie couldn't be found.
@@ -62,7 +62,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MovieProperties'
+              $ref: '#/components/schemas/Movie'
         required: true
       responses:
         201:
@@ -94,10 +94,10 @@ paths:
           description: DELETE method not supported.
 components:
   schemas:
-    Movie:
+    MovieResult:
       type: object
       properties:
-        Search:
+        Movie:
           type: array
           items:
             type: object
@@ -105,7 +105,7 @@ components:
               Title:
                 type: string
               Year:
-                type: integer
+                type: string
               imdbID:
                 type: string
               Type:
@@ -122,7 +122,7 @@ components:
         Title:
           type: string
         Year:
-          type: integer
+          type: string
         Rated:
           type: string
         Released:
@@ -176,13 +176,13 @@ components:
           type: string
         Response:
           type: boolean
-    MovieProperties:
+    Movie:
       type: object
       properties:
         Title:
           type: string
         Year:
-          type: integer
+          type: string
         imdbID:
           type: string
         Type:

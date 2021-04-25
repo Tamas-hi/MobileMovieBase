@@ -61,7 +61,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
             @Override
             public void onClick(View v) {
-                removeMovie(holder.getAdapterPosition());
+                deleteMovie(holder.getAdapterPosition());
             }
         });
 
@@ -90,15 +90,15 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         }
     }
 
-   public void setMovies(List<MovieResult> movies) {
+   public void setMovies(List<Movie> movies) {
 
    }
 
-   public void addMovie(MovieResult movieResult){
+   public void addMovie(Movie movie){
 
    }
 
-   public void removeMovie(int pos){
+   public void deleteMovie(int pos){
 
    }
 }

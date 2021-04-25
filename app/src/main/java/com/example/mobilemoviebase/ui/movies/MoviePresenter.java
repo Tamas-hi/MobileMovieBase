@@ -12,9 +12,9 @@ import javax.inject.Inject;
 
 public class MoviePresenter extends Presenter<MovieScreen> {
 
-
     @Inject
     public MoviePresenter(){
+
     }
 
     @Override

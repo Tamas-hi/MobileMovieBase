@@ -13,17 +13,7 @@ public class DetailsPresenter extends Presenter<DetailsScreen> {
 
     }
 
-    public void queryMovieDetail(int id){
+    public void getMovieDetails(int id){
 
-    }
-
-    @Override
-    public void attachScreen(DetailsScreen screen) {
-        super.attachScreen(screen);
-    }
-
-    @Override
-    public void detachScreen() {
-        super.detachScreen();
     }
 }

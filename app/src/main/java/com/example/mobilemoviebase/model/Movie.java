@@ -12,16 +12,21 @@
 
 package com.example.mobilemoviebase.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Objects;
 
 /**
- * MovieSearch
+ * Movie
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-23T14:07:28.797Z[GMT]")
 public class Movie {
+
   @SerializedName("Title")
   private String title = null;
 
