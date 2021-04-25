@@ -3,8 +3,8 @@ package com.example.mobilemoviebase.interactor.movies;
 import android.util.Log;
 
 import com.example.mobilemoviebase.model.MovieResult;
-import com.example.mobilemoviebase.model.MovieProperties;
-import com.example.mobilemoviebase.model.MovieWithDetails;
+import com.example.mobilemoviebase.model.Movie;
+import com.example.mobilemoviebase.model.MovieDetails;
 import com.example.mobilemoviebase.network.MovieApi;
 
 import javax.inject.Inject;
@@ -42,27 +42,27 @@ public class MoviesInteractor {
     }
 
     public void getMoviesById(){
-        Call<MovieWithDetails> movies = movieApi.getMoviesByImdbId("tt4154796");
+        Call<MovieDetails> movies = movieApi.getMoviesByImdbId("tt4154796");
 
-        movies.enqueue(new Callback<MovieWithDetails>() {
+        movies.enqueue(new Callback<MovieDetails>() {
             @Override
-            public void onResponse(Call<MovieWithDetails> call, Response<MovieWithDetails> response) {
+            public void onResponse(Call<MovieDetails> call, Response<MovieDetails> response) {
                 Log.d("RESULT", response.body().getPlot());
                 System.out.println(response.body().getPlot());
             }
 
             @Override
-            public void onFailure(Call<MovieWithDetails> call, Throwable t) {
+            public void onFailure(Call<MovieDetails> call, Throwable t) {
                 System.out.println(t.getMessage());
             }
         });
     }
 
 
-    public void addMovie(MovieProperties movieProperties){
+    public void addMovie(Movie movie){
         Retrofit retrofit = new Retrofit.Builder().baseUrl("https://movie-database-imdb-alternative.p.rapidapi.com/").addConverterFactory(GsonConverterFactory.create()).build();
         movieApi = retrofit.create(MovieApi.class);
-        movieApi.addMovie(movieProperties);
+        movieApi.addMovie(movie);
     }
 
     public void deleteMovie(int id){

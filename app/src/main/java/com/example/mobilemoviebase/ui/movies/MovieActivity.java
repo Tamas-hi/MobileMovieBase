@@ -12,6 +12,7 @@ import android.widget.SearchView;
 import com.example.mobilemoviebase.MobileMovieBaseApplication;
 import com.example.mobilemoviebase.R;
 import com.example.mobilemoviebase.model.MovieResult;
+import com.example.mobilemoviebase.model.Movie;
 import com.example.mobilemoviebase.network.MovieApi;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
@@ -31,8 +32,7 @@ public class MovieActivity extends AppCompatActivity implements MovieScreen {
 
     @Inject
     MoviePresenter moviePresenter;
-    private static MovieAdapter adapter;
-    private List<MovieResult> moviesList;
+    private MovieAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class MovieActivity extends AppCompatActivity implements MovieScreen {
         svMovie.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                loadMoviesInBackground();
+                loadMoviesInBackground(query);
                 return true;
             }
 
@@ -70,13 +70,10 @@ public class MovieActivity extends AppCompatActivity implements MovieScreen {
 
     private void initRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.MainRecyclerView);
-        // TODO connect API and get data
-        //moviesList.add(new Movie("testId", "Test", "Example director", 1997, 125, "asdasd", "http"));
         adapter = new MovieAdapter(this);
         recyclerView.setAdapter(adapter);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
     }
 
@@ -99,23 +96,22 @@ public class MovieActivity extends AppCompatActivity implements MovieScreen {
     }
 
     @Override
-    public void showMovies(List<MovieResult> movies) {
-        adapter.setMovies(movies);
+    public void showMovies() {
+
     }
 
     @Override
-    public void loadMoviesInBackground() {
-
+    public void loadMoviesInBackground(String query) {
         Gson gson = new GsonBuilder().setLenient().create();
         Retrofit retrofit = new Retrofit.Builder().baseUrl("https://movie-database-imdb-alternative.p.rapidapi.com/").addConverterFactory(GsonConverterFactory.create(gson)).build();
         MovieApi api = retrofit.create(MovieApi.class);
-        Call<MovieResult> movies = api.getMoviesByTitle("Test");
+        Call<MovieResult> movies = api.getMoviesByTitle(query);
 
         movies.enqueue(new Callback<MovieResult>() {
             @Override
             public void onResponse(Call<MovieResult> call, Response<MovieResult> response) {
                 Log.d("RESULT", response.body().getSearch().get(0).getImdbID());
-                System.out.println(response.body().getTotalResults());
+                System.out.println(response.body().getSearch());
             }
 
             @Override
@@ -126,5 +122,23 @@ public class MovieActivity extends AppCompatActivity implements MovieScreen {
 
 
 
+    }
+
+    public void addMovie(Movie movie){
+        new Thread(){
+            public final void run(){
+               try {
+                   runOnUiThread(new Runnable(){
+                       @Override
+                       public void run(){
+                            adapter.addMovie(movie);
+                       }
+                   });
+               }
+               catch(Exception e){
+                   e.printStackTrace();
+               }
+            }
+        }.start();
     }
 }

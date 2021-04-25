@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobilemoviebase.MobileMovieBaseApplication;
 import com.example.mobilemoviebase.R;
-import com.example.mobilemoviebase.model.MovieWithDetails;
+import com.example.mobilemoviebase.model.MovieDetails;
 
 import javax.inject.Inject;
 
@@ -22,7 +22,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen 
     }
 
     @Override
-    public void showMovieDetails(MovieWithDetails movie) {
+    public void showMovieDetails(MovieDetails movie) {
 
     }
 
@@ -41,6 +41,6 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen 
     @Override
     public void onResume() {
         super.onResume();
-        detailsPresenter.queryMovieDetail(1);
+        detailsPresenter.getMovieDetails(0);
     }
 }

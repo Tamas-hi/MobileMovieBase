@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface MovieScreen {
 
-    void showMovies(List<MovieResult> movies);
+    void showMovies();
 
-    void loadMoviesInBackground();
+    void loadMoviesInBackground(String query);
 }

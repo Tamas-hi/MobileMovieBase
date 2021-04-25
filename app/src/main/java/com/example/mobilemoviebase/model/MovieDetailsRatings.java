@@ -12,6 +12,10 @@
 
 package com.example.mobilemoviebase.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Objects;
@@ -21,14 +25,20 @@ import java.util.Objects;
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-23T14:07:28.797Z[GMT]")
-public class MovieWithDetailsRatings {
+@Entity(tableName = "ratings")
+public class MovieDetailsRatings {
+
+  @PrimaryKey(autoGenerate = false)
+  @ColumnInfo(name = "id")
+  int id;
+
   @SerializedName("Source")
   private String source = null;
 
   @SerializedName("Value")
   private String value = null;
 
-  public MovieWithDetailsRatings source(String source) {
+  public MovieDetailsRatings source(String source) {
     this.source = source;
     return this;
   }
@@ -45,7 +55,7 @@ public class MovieWithDetailsRatings {
     this.source = source;
   }
 
-  public MovieWithDetailsRatings value(String value) {
+  public MovieDetailsRatings value(String value) {
     this.value = value;
     return this;
   }
@@ -71,9 +81,9 @@ public class MovieWithDetailsRatings {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    MovieWithDetailsRatings movieWithDetailsRatings = (MovieWithDetailsRatings) o;
-    return Objects.equals(this.source, movieWithDetailsRatings.source) &&
-        Objects.equals(this.value, movieWithDetailsRatings.value);
+    MovieDetailsRatings movieDetailsRatings = (MovieDetailsRatings) o;
+    return Objects.equals(this.source, movieDetailsRatings.source) &&
+        Objects.equals(this.value, movieDetailsRatings.value);
   }
 
   @Override

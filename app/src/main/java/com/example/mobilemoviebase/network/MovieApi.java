@@ -1,8 +1,8 @@
 package com.example.mobilemoviebase.network;
 
 import com.example.mobilemoviebase.model.MovieResult;
-import com.example.mobilemoviebase.model.MovieProperties;
-import com.example.mobilemoviebase.model.MovieWithDetails;
+import com.example.mobilemoviebase.model.Movie;
+import com.example.mobilemoviebase.model.MovieDetails;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -25,13 +25,13 @@ public interface MovieApi {
             "x-rapidapi-key: acd21cc6femsh5d6f180530ebd38p1b1101jsnf5eb2e9a6be5",
             "x-rapidapi-host: movie-database-imdb-alternative.p.rapidapi.com"})
     @GET("/")
-    Call<MovieWithDetails> getMoviesByImdbId (@Query("i") String imdbId);
+    Call<MovieDetails> getMoviesByImdbId (@Query("i") String imdbId);
 
     @Headers({"Accept: application/json",
             "x-rapidapi-key: acd21cc6femsh5d6f180530ebd38p1b1101jsnf5eb2e9a6be5",
             "x-rapidapi-host: movie-database-imdb-alternative.p.rapidapi.com"})
     @POST("/addMovie")
-    Call<ResponseBody> addMovie (@Body MovieProperties movieProperties);
+    Call<ResponseBody> addMovie (@Body Movie movieProperties);
 
     @Headers({"Accept: application/json",
             "x-rapidapi-key: acd21cc6femsh5d6f180530ebd38p1b1101jsnf5eb2e9a6be5",

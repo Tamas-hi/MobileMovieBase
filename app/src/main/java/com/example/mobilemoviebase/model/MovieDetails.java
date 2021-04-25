@@ -12,6 +12,12 @@
 
 package com.example.mobilemoviebase.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
 import com.example.mobilemoviebase.network.OneOfinlineResponse200;
 import com.google.gson.annotations.SerializedName;
 
@@ -25,83 +31,115 @@ import java.util.Objects;
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-23T14:07:28.797Z[GMT]")
-public class MovieWithDetails implements OneOfinlineResponse200 {
+@Entity(tableName = "movies")
+public class MovieDetails implements OneOfinlineResponse200 {
+
+  @PrimaryKey(autoGenerate = true)
+  @ColumnInfo(name = "id")
+  private int id;
+
   @SerializedName("Title")
+  @ColumnInfo(name = "title")
   private String title = null;
 
   @SerializedName("Year")
+  @ColumnInfo(name = "year")
   private String year = null;
 
   @SerializedName("Rated")
+  @ColumnInfo(name = "rated")
   private String rated = null;
 
   @SerializedName("Released")
+  @ColumnInfo(name = "released")
   private String released = null;
 
   @SerializedName("Runtime")
+  @ColumnInfo(name = "runtime")
   private String runtime = null;
 
   @SerializedName("Genre")
+  @ColumnInfo(name = "genre")
   private String genre = null;
 
   @SerializedName("Director")
+  @ColumnInfo(name = "director")
   private String director = null;
 
   @SerializedName("Writer")
+  @ColumnInfo(name = "writer")
   private String writer = null;
 
   @SerializedName("Actors")
+  @ColumnInfo(name = "actors")
   private String actors = null;
 
   @SerializedName("Plot")
+  @ColumnInfo(name = "plot")
   private String plot = null;
 
   @SerializedName("Language")
+  @ColumnInfo(name = "language")
   private String language = null;
 
   @SerializedName("Country")
+  @ColumnInfo(name = "country")
   private String country = null;
 
   @SerializedName("Awards")
+  @ColumnInfo(name = "awards")
   private String awards = null;
 
   @SerializedName("Poster")
+  @ColumnInfo(name = "poster")
   private String poster = null;
 
+  @Ignore
   @SerializedName("Ratings")
-  private List<MovieWithDetailsRatings> ratings = null;
+  @ColumnInfo(name = "ratings")
+  private List<MovieDetailsRatings> ratings = null;
 
   @SerializedName("Metascore")
+  @ColumnInfo(name = "metascore")
   private Integer metascore = null;
 
   @SerializedName("imdbRating")
-  private BigDecimal imdbRating = null;
+  @ColumnInfo(name = "imdbrating")
+  private Integer imdbRating = null;
 
   @SerializedName("imdbVotes")
-  private BigDecimal imdbVotes = null;
+  @ColumnInfo(name = "imdbvotes")
+  private Integer imdbVotes = null;
 
   @SerializedName("imdbID")
+  @ColumnInfo(name = "imdbid")
   private String imdbID = null;
 
   @SerializedName("Type")
+  @ColumnInfo(name = "type")
   private String type = null;
 
   @SerializedName("DVD")
+  @ColumnInfo(name = "dvd")
   private String DVD = null;
 
   @SerializedName("BoxOffice")
+  @ColumnInfo(name = "boxoffice")
   private String boxOffice = null;
 
   @SerializedName("Production")
+  @ColumnInfo(name = "production")
   private String production = null;
 
   @SerializedName("Website")
+  @ColumnInfo(name = "website")
   private String website = null;
 
   @SerializedName("Response")
+  @ColumnInfo(name = "response")
   private Boolean response = null;
 
-  public MovieWithDetails title(String title) {
+  public MovieDetails title(String title) {
     this.title = title;
     return this;
   }
@@ -118,7 +156,7 @@ public class MovieWithDetails implements OneOfinlineResponse200 {
     this.title = title;
   }
 
-  public MovieWithDetails year(String year) {
+  public MovieDetails year(String year) {
     this.year = year;
     return this;
   }
@@ -135,7 +173,7 @@ public class MovieWithDetails implements OneOfinlineResponse200 {
     this.year = year;
   }
 
-  public MovieWithDetails rated(String rated) {
+  public MovieDetails rated(String rated) {
     this.rated = rated;
     return this;
   }
@@ -152,9 +190,17 @@ public class MovieWithDetails implements OneOfinlineResponse200 {
     this.rated = rated;
   }
 
-  public MovieWithDetails released(String released) {
+  public MovieDetails released(String released) {
     this.released = released;
     return this;
+  }
+
+  public List<MovieDetailsRatings> getRatings() {
+    return ratings;
+  }
+
+  public void setRatings(List<MovieDetailsRatings> ratings) {
+    this.ratings = ratings;
   }
 
    /**
@@ -169,7 +215,7 @@ public class MovieWithDetails implements OneOfinlineResponse200 {
     this.released = released;
   }
 
-  public MovieWithDetails runtime(String runtime) {
+  public MovieDetails runtime(String runtime) {
     this.runtime = runtime;
     return this;
   }
@@ -186,7 +232,7 @@ public class MovieWithDetails implements OneOfinlineResponse200 {
     this.runtime = runtime;
   }
 
-  public MovieWithDetails genre(String genre) {
+  public MovieDetails genre(String genre) {
     this.genre = genre;
     return this;
   }
@@ -203,7 +249,7 @@ public class MovieWithDetails implements OneOfinlineResponse200 {
     this.genre = genre;
   }
 
-  public MovieWithDetails director(String director) {
+  public MovieDetails director(String director) {
     this.director = director;
     return this;
   }
@@ -220,7 +266,7 @@ public class MovieWithDetails implements OneOfinlineResponse200 {
     this.director = director;
   }
 
-  public MovieWithDetails writer(String writer) {
+  public MovieDetails writer(String writer) {
     this.writer = writer;
     return this;
   }
@@ -237,7 +283,7 @@ public class MovieWithDetails implements OneOfinlineResponse200 {
     this.writer = writer;
   }
 
-  public MovieWithDetails actors(String actors) {
+  public MovieDetails actors(String actors) {
     this.actors = actors;
     return this;
   }
@@ -254,7 +300,7 @@ public class MovieWithDetails implements OneOfinlineResponse200 {
     this.actors = actors;
   }
 
-  public MovieWithDetails plot(String plot) {
+  public MovieDetails plot(String plot) {
     this.plot = plot;
     return this;
   }
@@ -271,7 +317,7 @@ public class MovieWithDetails implements OneOfinlineResponse200 {
     this.plot = plot;
   }
 
-  public MovieWithDetails language(String language) {
+  public MovieDetails language(String language) {
     this.language = language;
     return this;
   }
@@ -288,7 +334,7 @@ public class MovieWithDetails implements OneOfinlineResponse200 {
     this.language = language;
   }
 
-  public MovieWithDetails country(String country) {
+  public MovieDetails country(String country) {
     this.country = country;
     return this;
   }
@@ -305,7 +351,7 @@ public class MovieWithDetails implements OneOfinlineResponse200 {
     this.country = country;
   }
 
-  public MovieWithDetails awards(String awards) {
+  public MovieDetails awards(String awards) {
     this.awards = awards;
     return this;
   }
@@ -322,7 +368,7 @@ public class MovieWithDetails implements OneOfinlineResponse200 {
     this.awards = awards;
   }
 
-  public MovieWithDetails poster(String poster) {
+  public MovieDetails poster(String poster) {
     this.poster = poster;
     return this;
   }
@@ -339,32 +385,7 @@ public class MovieWithDetails implements OneOfinlineResponse200 {
     this.poster = poster;
   }
 
-  public MovieWithDetails ratings(List<MovieWithDetailsRatings> ratings) {
-    this.ratings = ratings;
-    return this;
-  }
-
-  public MovieWithDetails addRatingsItem(MovieWithDetailsRatings ratingsItem) {
-    if (this.ratings == null) {
-      this.ratings = new ArrayList<MovieWithDetailsRatings>();
-    }
-    this.ratings.add(ratingsItem);
-    return this;
-  }
-
-   /**
-   * Get ratings
-   * @return ratings
-  **/
-  public List<MovieWithDetailsRatings> getRatings() {
-    return ratings;
-  }
-
-  public void setRatings(List<MovieWithDetailsRatings> ratings) {
-    this.ratings = ratings;
-  }
-
-  public MovieWithDetails metascore(Integer metascore) {
+  public MovieDetails metascore(Integer metascore) {
     this.metascore = metascore;
     return this;
   }
@@ -381,41 +402,7 @@ public class MovieWithDetails implements OneOfinlineResponse200 {
     this.metascore = metascore;
   }
 
-  public MovieWithDetails imdbRating(BigDecimal imdbRating) {
-    this.imdbRating = imdbRating;
-    return this;
-  }
-
-   /**
-   * Get imdbRating
-   * @return imdbRating
-  **/
-  public BigDecimal getImdbRating() {
-    return imdbRating;
-  }
-
-  public void setImdbRating(BigDecimal imdbRating) {
-    this.imdbRating = imdbRating;
-  }
-
-  public MovieWithDetails imdbVotes(BigDecimal imdbVotes) {
-    this.imdbVotes = imdbVotes;
-    return this;
-  }
-
-   /**
-   * Get imdbVotes
-   * @return imdbVotes
-  **/
-  public BigDecimal getImdbVotes() {
-    return imdbVotes;
-  }
-
-  public void setImdbVotes(BigDecimal imdbVotes) {
-    this.imdbVotes = imdbVotes;
-  }
-
-  public MovieWithDetails imdbID(String imdbID) {
+  public MovieDetails imdbID(String imdbID) {
     this.imdbID = imdbID;
     return this;
   }
@@ -432,7 +419,7 @@ public class MovieWithDetails implements OneOfinlineResponse200 {
     this.imdbID = imdbID;
   }
 
-  public MovieWithDetails type(String type) {
+  public MovieDetails type(String type) {
     this.type = type;
     return this;
   }
@@ -449,7 +436,7 @@ public class MovieWithDetails implements OneOfinlineResponse200 {
     this.type = type;
   }
 
-  public MovieWithDetails DVD(String DVD) {
+  public MovieDetails DVD(String DVD) {
     this.DVD = DVD;
     return this;
   }
@@ -466,7 +453,7 @@ public class MovieWithDetails implements OneOfinlineResponse200 {
     this.DVD = DVD;
   }
 
-  public MovieWithDetails boxOffice(String boxOffice) {
+  public MovieDetails boxOffice(String boxOffice) {
     this.boxOffice = boxOffice;
     return this;
   }
@@ -483,7 +470,7 @@ public class MovieWithDetails implements OneOfinlineResponse200 {
     this.boxOffice = boxOffice;
   }
 
-  public MovieWithDetails production(String production) {
+  public MovieDetails production(String production) {
     this.production = production;
     return this;
   }
@@ -500,7 +487,7 @@ public class MovieWithDetails implements OneOfinlineResponse200 {
     this.production = production;
   }
 
-  public MovieWithDetails website(String website) {
+  public MovieDetails website(String website) {
     this.website = website;
     return this;
   }
@@ -517,7 +504,7 @@ public class MovieWithDetails implements OneOfinlineResponse200 {
     this.website = website;
   }
 
-  public MovieWithDetails response(Boolean response) {
+  public MovieDetails response(Boolean response) {
     this.response = response;
     return this;
   }
@@ -543,37 +530,38 @@ public class MovieWithDetails implements OneOfinlineResponse200 {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    MovieWithDetails movieWithDetails = (MovieWithDetails) o;
-    return Objects.equals(this.title, movieWithDetails.title) &&
-        Objects.equals(this.year, movieWithDetails.year) &&
-        Objects.equals(this.rated, movieWithDetails.rated) &&
-        Objects.equals(this.released, movieWithDetails.released) &&
-        Objects.equals(this.runtime, movieWithDetails.runtime) &&
-        Objects.equals(this.genre, movieWithDetails.genre) &&
-        Objects.equals(this.director, movieWithDetails.director) &&
-        Objects.equals(this.writer, movieWithDetails.writer) &&
-        Objects.equals(this.actors, movieWithDetails.actors) &&
-        Objects.equals(this.plot, movieWithDetails.plot) &&
-        Objects.equals(this.language, movieWithDetails.language) &&
-        Objects.equals(this.country, movieWithDetails.country) &&
-        Objects.equals(this.awards, movieWithDetails.awards) &&
-        Objects.equals(this.poster, movieWithDetails.poster) &&
-        Objects.equals(this.ratings, movieWithDetails.ratings) &&
-        Objects.equals(this.metascore, movieWithDetails.metascore) &&
-        Objects.equals(this.imdbRating, movieWithDetails.imdbRating) &&
-        Objects.equals(this.imdbVotes, movieWithDetails.imdbVotes) &&
-        Objects.equals(this.imdbID, movieWithDetails.imdbID) &&
-        Objects.equals(this.type, movieWithDetails.type) &&
-        Objects.equals(this.DVD, movieWithDetails.DVD) &&
-        Objects.equals(this.boxOffice, movieWithDetails.boxOffice) &&
-        Objects.equals(this.production, movieWithDetails.production) &&
-        Objects.equals(this.website, movieWithDetails.website) &&
-        Objects.equals(this.response, movieWithDetails.response);
+    MovieDetails movieDetails = (MovieDetails) o;
+    return Objects.equals(this.title, movieDetails.title) &&
+        Objects.equals(this.year, movieDetails.year) &&
+        Objects.equals(this.rated, movieDetails.rated) &&
+        Objects.equals(this.released, movieDetails.released) &&
+        Objects.equals(this.runtime, movieDetails.runtime) &&
+        Objects.equals(this.genre, movieDetails.genre) &&
+        Objects.equals(this.director, movieDetails.director) &&
+        Objects.equals(this.writer, movieDetails.writer) &&
+        Objects.equals(this.actors, movieDetails.actors) &&
+        Objects.equals(this.plot, movieDetails.plot) &&
+        Objects.equals(this.language, movieDetails.language) &&
+        Objects.equals(this.country, movieDetails.country) &&
+        Objects.equals(this.awards, movieDetails.awards) &&
+        Objects.equals(this.poster, movieDetails.poster) &&
+       // Objects.equals(this.ratings, movieDetails.ratings) &&
+        Objects.equals(this.metascore, movieDetails.metascore) &&
+        Objects.equals(this.imdbRating, movieDetails.imdbRating) &&
+        Objects.equals(this.imdbVotes, movieDetails.imdbVotes) &&
+        Objects.equals(this.imdbID, movieDetails.imdbID) &&
+        Objects.equals(this.type, movieDetails.type) &&
+        Objects.equals(this.DVD, movieDetails.DVD) &&
+        Objects.equals(this.boxOffice, movieDetails.boxOffice) &&
+        Objects.equals(this.production, movieDetails.production) &&
+        Objects.equals(this.website, movieDetails.website) &&
+        Objects.equals(this.response, movieDetails.response);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(title, year, rated, released, runtime, genre, director, writer, actors, plot, language, country, awards, poster, ratings, metascore, imdbRating, imdbVotes, imdbID, type, DVD, boxOffice, production, website, response);
+    return Objects.hash(title, year, rated, released, runtime, genre, director, writer, actors, plot, language, country, awards, poster, //ratings,
+            metascore, imdbRating, imdbVotes, imdbID, type, DVD, boxOffice, production, website, response);
   }
 
 
@@ -596,7 +584,7 @@ public class MovieWithDetails implements OneOfinlineResponse200 {
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    awards: ").append(toIndentedString(awards)).append("\n");
     sb.append("    poster: ").append(toIndentedString(poster)).append("\n");
-    sb.append("    ratings: ").append(toIndentedString(ratings)).append("\n");
+    //sb.append("    ratings: ").append(toIndentedString(ratings)).append("\n");
     sb.append("    metascore: ").append(toIndentedString(metascore)).append("\n");
     sb.append("    imdbRating: ").append(toIndentedString(imdbRating)).append("\n");
     sb.append("    imdbVotes: ").append(toIndentedString(imdbVotes)).append("\n");
@@ -620,6 +608,30 @@ public class MovieWithDetails implements OneOfinlineResponse200 {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public Integer getImdbRating(){
+    return imdbRating;
+  }
+
+  public void setImdbRating(Integer imdbRating) {
+    this.imdbRating = imdbRating;
+  }
+
+  public Integer getImdbVotes(){
+    return imdbVotes;
+  }
+
+  public void setImdbVotes(Integer imdbVotes) {
+    this.imdbVotes = imdbVotes;
   }
 
 }
