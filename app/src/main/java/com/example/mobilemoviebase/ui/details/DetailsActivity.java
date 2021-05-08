@@ -1,11 +1,20 @@
 package com.example.mobilemoviebase.ui.details;
 
+import android.graphics.Movie;
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.mobilemoviebase.MobileMovieBaseApplication;
 import com.example.mobilemoviebase.R;
+import com.example.mobilemoviebase.interactor.movies.event.GetMoviesEvent;
 import com.example.mobilemoviebase.model.MovieDetails;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import javax.inject.Inject;
 
@@ -19,12 +28,15 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         MobileMovieBaseApplication.injector.inject(this);
+
+        String imdbId = getIntent().getStringExtra("Movie IMDB id");
+        try {
+            getMovieDetails(imdbId);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    @Override
-    public void showMovieDetails(MovieDetails movie) {
-
-    }
 
     @Override
     public void onStart() {
@@ -41,6 +53,24 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen 
     @Override
     public void onResume() {
         super.onResume();
-        detailsPresenter.getMovieDetails(0);
+      //  detailsPresenter.getMovieDetails(0);
+    }
+
+    public void getMovieDetails(String ImdbId) throws InterruptedException {
+        MovieDetails movieDetails = detailsPresenter.getMovieDetails(this, ImdbId);
+
+        /*ImageView ivPoster = findViewById(R.id.movie_unique_poster);
+        Glide.with(this).load(movieDetails.getPoster()).into(ivPoster);
+
+        TextView tvLength = findViewById(R.id.tv_length);
+        tvLength.setText(movieDetails.getRuntime());
+
+        TextView tvPlot = findViewById(R.id.tv_plot);
+        tvPlot.setText(movieDetails.getPlot());*/
+    }
+
+    @Override
+    public void showError(String error) {
+        System.out.println(error);
     }
 }

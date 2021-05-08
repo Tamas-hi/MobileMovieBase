@@ -5,4 +5,14 @@
     <string name="search_movies_by_title">Search movieLists by title</string>
     <string name="deleteicon">deleteIcon</string>
     <string name="details">Details</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="plot">Plot</string>
+    <string name="length">Length</string>
+    <string name="release_year">Release year</string>
+    <string name="director">Director</string>
+    <string name="title">Title</string>
+    <string name="type">Type</string>
+    <string name="imdbid">ImdbId</string>
+    <string name="poster">Poster</string>
 </resources>

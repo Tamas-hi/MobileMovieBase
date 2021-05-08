@@ -7,9 +7,10 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
+import com.example.mobilemoviebase.model.Movie;
 import com.example.mobilemoviebase.model.MovieDetails;
 
-@Database(entities = {MovieDetails.class}, version = 1, exportSchema = false)
+@Database(entities = {Movie.class, MovieDetails.class}, version = 1, exportSchema = false)
 public abstract class MovieDatabase extends RoomDatabase {
     public abstract MovieDao movieDao();
 
@@ -20,7 +21,7 @@ public abstract class MovieDatabase extends RoomDatabase {
         if (instance == null) {
             synchronized (MovieDatabase.class) {
                 if (instance == null) {
-                    instance = Room.databaseBuilder(context, MovieDatabase.class, DB_name).build();
+                    instance = Room.databaseBuilder(context, MovieDatabase.class, DB_name).allowMainThreadQueries().build();
                 }
             }
         }

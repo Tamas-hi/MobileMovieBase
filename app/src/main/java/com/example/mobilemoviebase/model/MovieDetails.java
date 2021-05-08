@@ -31,7 +31,7 @@ import java.util.Objects;
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-23T14:07:28.797Z[GMT]")
-@Entity(tableName = "movies")
+@Entity(tableName = "movieDetails")
 public class MovieDetails implements OneOfinlineResponse200 {
 
   @PrimaryKey(autoGenerate = true)
@@ -101,15 +101,15 @@ public class MovieDetails implements OneOfinlineResponse200 {
 
   @SerializedName("Metascore")
   @ColumnInfo(name = "metascore")
-  private Integer metascore = null;
+  private String metascore = null;
 
   @SerializedName("imdbRating")
   @ColumnInfo(name = "imdbrating")
-  private Integer imdbRating = null;
+  private Double imdbRating = null;
 
   @SerializedName("imdbVotes")
   @ColumnInfo(name = "imdbvotes")
-  private Integer imdbVotes = null;
+  private String imdbVotes = null;
 
   @SerializedName("imdbID")
   @ColumnInfo(name = "imdbid")
@@ -385,7 +385,7 @@ public class MovieDetails implements OneOfinlineResponse200 {
     this.poster = poster;
   }
 
-  public MovieDetails metascore(Integer metascore) {
+  public MovieDetails metascore(String metascore) {
     this.metascore = metascore;
     return this;
   }
@@ -394,11 +394,11 @@ public class MovieDetails implements OneOfinlineResponse200 {
    * Get metascore
    * @return metascore
   **/
-  public Integer getMetascore() {
+  public String getMetascore() {
     return metascore;
   }
 
-  public void setMetascore(Integer metascore) {
+  public void setMetascore(String metascore) {
     this.metascore = metascore;
   }
 
@@ -618,19 +618,19 @@ public class MovieDetails implements OneOfinlineResponse200 {
     this.id = id;
   }
 
-  public Integer getImdbRating(){
+  public Double getImdbRating(){
     return imdbRating;
   }
 
-  public void setImdbRating(Integer imdbRating) {
+  public void setImdbRating(Double imdbRating) {
     this.imdbRating = imdbRating;
   }
 
-  public Integer getImdbVotes(){
+  public String getImdbVotes(){
     return imdbVotes;
   }
 
-  public void setImdbVotes(Integer imdbVotes) {
+  public void setImdbVotes(String imdbVotes) {
     this.imdbVotes = imdbVotes;
   }
 

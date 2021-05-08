@@ -1,12 +1,13 @@
 package com.example.mobilemoviebase.ui.movies;
 
-import com.example.mobilemoviebase.model.MovieResult;
+import com.example.mobilemoviebase.model.Movie;
+import com.example.mobilemoviebase.model.MovieDetails;
 
 import java.util.List;
 
 public interface MovieScreen {
 
-    void showMovies();
+    void showMovies(List<Movie> movies);
 
-    void loadMoviesInBackground(String query);
+  //  void loadMoviesInBackground(String query);
 }

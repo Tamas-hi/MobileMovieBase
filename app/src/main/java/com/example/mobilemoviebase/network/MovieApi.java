@@ -31,7 +31,7 @@ public interface MovieApi {
             "x-rapidapi-key: acd21cc6femsh5d6f180530ebd38p1b1101jsnf5eb2e9a6be5",
             "x-rapidapi-host: movie-database-imdb-alternative.p.rapidapi.com"})
     @POST("/addMovie")
-    Call<ResponseBody> addMovie (@Body Movie movieProperties);
+    Call<ResponseBody> addMovie (@Body Movie movie);
 
     @Headers({"Accept: application/json",
             "x-rapidapi-key: acd21cc6femsh5d6f180530ebd38p1b1101jsnf5eb2e9a6be5",

@@ -1,11 +1,19 @@
 package com.example.mobilemoviebase.interactor.movies;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.ImageView;
 
+import com.example.mobilemoviebase.db.MovieDatabase;
+import com.example.mobilemoviebase.interactor.movies.event.GetMoviesEvent;
 import com.example.mobilemoviebase.model.MovieResult;
 import com.example.mobilemoviebase.model.Movie;
 import com.example.mobilemoviebase.model.MovieDetails;
 import com.example.mobilemoviebase.network.MovieApi;
+
+import org.greenrobot.eventbus.EventBus;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -24,31 +32,71 @@ public class MoviesInteractor {
         this.movieApi = movieApi;
     }
 
-    public void getMoviesByTitle(){
-        Call<MovieResult> movies = movieApi.getMoviesByTitle("Test");
+    public void getMoviesByTitle(Context context, String title){
+            Retrofit retrofit = new Retrofit.Builder().baseUrl("https://movie-database-imdb-alternative.p.rapidapi.com/").addConverterFactory(GsonConverterFactory.create()).build();
+            MovieApi movieApi = retrofit.create(MovieApi.class);
 
-        movies.enqueue(new Callback<MovieResult>() {
-            @Override
-            public void onResponse(Call<MovieResult> call, Response<MovieResult> response) {
-                Log.d("RESULT", response.body().getSearch().get(0).getImdbID());
-                System.out.println(response.body().getTotalResults());
-            }
+            Call<MovieResult> movies = movieApi.getMoviesByTitle(title);
+            GetMoviesEvent event = new GetMoviesEvent();
+            movies.enqueue(new Callback<MovieResult>() {
+                @Override
+                public void onResponse(Call<MovieResult> call, Response<MovieResult> response) {
+                    MovieResult movieResult = new MovieResult(response.body().getSearch(), response.body().getTotalResults(), response.body().isResponse());
+                    if(title != null) {
+                        for (Movie m : movieResult.getSearch()) {
+                            String title = m.getTitle();
+                            String year = m.getYear();
+                            String imdbId = m.getImdbID();
+                            String type = m.getType();
+                            String posterUrl = m.getPoster();
 
-            @Override
-            public void onFailure(Call<MovieResult> call, Throwable t) {
-                System.out.println(t.getMessage());
-            }
-        });
+                            Movie movie = new Movie();
+                            movie.setTitle(title);
+                            movie.setYear(year);
+                            movie.setImdbID(imdbId);
+                            movie.setType(type);
+                            movie.setPoster(posterUrl);
+
+                            MovieDatabase.getDatabase(context).movieDao().insertMovie(movie);
+                        }
+                    }
+                    List<Movie> existingMovies = MovieDatabase.getDatabase(context).movieDao().getAllMovies();
+                    event.setMovies(existingMovies);
+                    EventBus.getDefault().post(event);
+
+                }
+
+                @Override
+                public void onFailure(Call<MovieResult> call, Throwable t) {
+                    System.out.println(t.getMessage());
+                }
+            });
     }
 
-    public void getMoviesById(){
-        Call<MovieDetails> movies = movieApi.getMoviesByImdbId("tt4154796");
+    public void getMovieDetailsById(Context context, String imdbId){
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://movie-database-imdb-alternative.p.rapidapi.com/").addConverterFactory(GsonConverterFactory.create()).build();
+        MovieApi movieApi = retrofit.create(MovieApi.class);
+
+        Call<MovieDetails> movies = movieApi.getMoviesByImdbId(imdbId);
+        GetMoviesEvent event = new GetMoviesEvent();
 
         movies.enqueue(new Callback<MovieDetails>() {
             @Override
             public void onResponse(Call<MovieDetails> call, Response<MovieDetails> response) {
-                Log.d("RESULT", response.body().getPlot());
-                System.out.println(response.body().getPlot());
+                MovieDetails movieDetails = new MovieDetails();
+                movieDetails.setTitle(response.body().getTitle());
+                movieDetails.setYear(response.body().getYear());
+                movieDetails.setImdbID(response.body().getImdbID());
+                movieDetails.setType(response.body().getType());
+                movieDetails.setPoster(response.body().getPoster());
+                movieDetails.setRuntime(response.body().getRuntime());
+                movieDetails.setPlot(response.body().getPlot());
+
+                MovieDatabase.getDatabase(context).movieDao().insertMovieDetails(movieDetails);
+                MovieDetails existingDetails = MovieDatabase.getDatabase(context).movieDao().getMovieDetails(movieDetails.getImdbID());
+                System.out.println(existingDetails.getPoster());
+                event.setMovieDetails(existingDetails);
+                EventBus.getDefault().post(event);
             }
 
             @Override

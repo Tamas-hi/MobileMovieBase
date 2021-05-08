@@ -34,6 +34,12 @@ public class MovieResult implements OneOfinlineResponse200 {
   @SerializedName("Response")
   private Boolean response = null;
 
+  public MovieResult(List<Movie> search, Integer totalResults, Boolean response) {
+    this.search = search;
+    this.totalResults = totalResults;
+    this.response = response;
+  }
+
   public MovieResult search(List<Movie> search) {
     this.search = search;
     return this;
