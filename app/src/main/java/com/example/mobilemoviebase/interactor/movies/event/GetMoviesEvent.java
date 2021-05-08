@@ -11,6 +11,8 @@ public class GetMoviesEvent {
 
     private MovieDetails movieDetails;
 
+    private String message;
+
     public GetMoviesEvent(){
 
     }
@@ -37,6 +39,14 @@ public class GetMoviesEvent {
 
     public void setMovieDetails(MovieDetails movieDetails) {
         this.movieDetails = movieDetails;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
 

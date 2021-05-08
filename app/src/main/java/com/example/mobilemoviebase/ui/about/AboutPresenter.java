@@ -30,8 +30,8 @@ public class AboutPresenter extends Presenter<AboutScreen> {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(final GetMoviesEvent event) {
-        if (event.getMovies() != null) {
-            screen.ShowAboutScreen();
+        if (event.getMessage() != null) {
+            screen.showError(event.getMessage());
         }
     }
 }

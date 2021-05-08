@@ -29,7 +29,7 @@ public interface MovieDao {
     long insertMovie(Movie movie);
 
     @Insert
-    long insertMovieDetails(MovieDetails movie);
+    long insertMovieDetails(MovieDetails movieDetails);
 
     @Update
     void updateMovie(Movie movie);
@@ -37,7 +37,13 @@ public interface MovieDao {
     @Delete
     void deleteMovie(Movie movie);
 
+    @Query("DELETE FROM movieDetails WHERE id=:id")
+    void deleteMovieDetailsById(long id);
+
     @Query("DELETE FROM movies")
     void deleteAllMovies();
+
+    @Query("DELETE FROM movieDetails")
+    void deleteAllMovieDetails();
 
 }

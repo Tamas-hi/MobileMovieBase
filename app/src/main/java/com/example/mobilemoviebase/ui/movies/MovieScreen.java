@@ -8,6 +8,5 @@ import java.util.List;
 public interface MovieScreen {
 
     void showMovies(List<Movie> movies);
-
-  //  void loadMoviesInBackground(String query);
+    void showError(String message);
 }

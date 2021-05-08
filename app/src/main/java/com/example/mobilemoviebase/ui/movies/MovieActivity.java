@@ -65,8 +65,6 @@ public class MovieActivity extends AppCompatActivity implements MovieScreen {
         svMovie.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                //loadMoviesInBackground(query);
-                //return true;
                 movieSearch = query;
                 getMovie(movieSearch);
                 return true;
@@ -91,10 +89,10 @@ public class MovieActivity extends AppCompatActivity implements MovieScreen {
 
     private void showPopUpWindow(){
         View popUpView = LayoutInflater.from(this).inflate(R.layout.add_new_movie,null);
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this).setView(popUpView);
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this).setView(popUpView);
 
 
-        mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        alertBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Movie movie = new Movie();
@@ -114,14 +112,14 @@ public class MovieActivity extends AppCompatActivity implements MovieScreen {
             }
         });
 
-        mBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
         });
 
-        AlertDialog alert = mBuilder.create();
+        AlertDialog alert = alertBuilder.create();
         alert.show();
 
     }
@@ -133,7 +131,6 @@ public class MovieActivity extends AppCompatActivity implements MovieScreen {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-        moviePresenter.showMoviesSearchList(this, movieSearch);
     }
 
     @Override
@@ -156,6 +153,7 @@ public class MovieActivity extends AppCompatActivity implements MovieScreen {
     @Override
     protected void onResume(){
         super.onResume();
+        moviePresenter.showMoviesSearchList(this, movieSearch);
         adapter.notifyDataSetChanged();
     }
 
@@ -164,44 +162,9 @@ public class MovieActivity extends AppCompatActivity implements MovieScreen {
         adapter.setMovies(movie);
     }
 
-    /*public void loadMoviesInBackground(String query) {
-        Gson gson = new GsonBuilder().setLenient().create();
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://movie-database-imdb-alternative.p.rapidapi.com/").addConverterFactory(GsonConverterFactory.create(gson)).build();
-        MovieApi api = retrofit.create(MovieApi.class);
-        Call<MovieResult> movies = api.getMoviesByTitle(query);
+    @Override
+    public void showError(String message) {
+        System.out.println(message);
+    }
 
-        movies.enqueue(new Callback<MovieResult>() {
-            @Override
-            public void onResponse(Call<MovieResult> call, Response<MovieResult> response) {
-                Log.d("RESULT", response.body().getSearch().get(0).getImdbID());
-                System.out.println(response.body().getSearch());
-            }
-
-            @Override
-            public void onFailure(Call<MovieResult> call, Throwable t) {
-                System.out.println(t.getMessage());
-            }
-        });
-
-
-
-    }*/
-
-    /*public void addMovie(Movie movie){
-        new Thread(){
-            public final void run(){
-               try {
-                   runOnUiThread(new Runnable(){
-                       @Override
-                       public void run(){
-                            adapter.addMovie(movie);
-                       }
-                   });
-               }
-               catch(Exception e){
-                   e.printStackTrace();
-               }
-            }
-        }.start();
-    }*/
 }

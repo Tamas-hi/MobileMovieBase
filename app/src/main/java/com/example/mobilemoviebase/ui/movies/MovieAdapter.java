@@ -27,7 +27,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     private Context context;
     private List<Movie> movieList;
-    //private MovieResult movies = new ArrayList<>();
 
     public MovieAdapter(Context context){
         movieList = new ArrayList<>();
@@ -109,12 +108,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
    }
 
    public void deleteMovie(int pos){
-        List<Movie> movies = MovieDatabase.getDatabase(context).movieDao().getAllMovies();
-
         Movie movieToDelete = movieList.get(pos);
         movieList.remove(movieToDelete);
         notifyItemRemoved(pos);
-
         MovieDatabase.getDatabase(context).movieDao().deleteMovie(movieToDelete);
 
    }

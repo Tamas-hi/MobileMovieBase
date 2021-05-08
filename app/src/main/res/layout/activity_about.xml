@@ -6,9 +6,11 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/tv_goal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Application goal"
+        android:text="@string/this_application_aim_is_to_let_the_user_experience_a_whole_world_of_movies_you_can_search_for_movies_check_its_details_and_you_can_also_add_your_own_movie"
         android:layout_gravity="center">
 
     </TextView>
@@ -16,7 +18,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Developed By Tamás Hargitai"
+        android:text="@string/developed_by_tam_s_hargitai"
         android:paddingTop="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="80dp">

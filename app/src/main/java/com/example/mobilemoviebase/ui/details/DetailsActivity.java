@@ -30,13 +30,8 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen 
         MobileMovieBaseApplication.injector.inject(this);
 
         String imdbId = getIntent().getStringExtra("Movie IMDB id");
-        try {
-            getMovieDetails(imdbId);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        getMovieDetails(imdbId);
     }
-
 
     @Override
     public void onStart() {
@@ -53,20 +48,23 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen 
     @Override
     public void onResume() {
         super.onResume();
-      //  detailsPresenter.getMovieDetails(0);
     }
 
-    public void getMovieDetails(String ImdbId) throws InterruptedException {
-        MovieDetails movieDetails = detailsPresenter.getMovieDetails(this, ImdbId);
+    public void getMovieDetails(String ImdbId) {
+        detailsPresenter.getMovieDetails(this, ImdbId);
+    }
 
-        /*ImageView ivPoster = findViewById(R.id.movie_unique_poster);
+    @Override
+    public void showMovieDetails(MovieDetails movieDetails) {
+
+        ImageView ivPoster = findViewById(R.id.movie_unique_poster);
         Glide.with(this).load(movieDetails.getPoster()).into(ivPoster);
 
         TextView tvLength = findViewById(R.id.tv_length);
         tvLength.setText(movieDetails.getRuntime());
 
         TextView tvPlot = findViewById(R.id.tv_plot);
-        tvPlot.setText(movieDetails.getPlot());*/
+        tvPlot.setText(movieDetails.getPlot());
     }
 
     @Override

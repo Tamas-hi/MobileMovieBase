@@ -51,16 +51,13 @@ public class MoviePresenter extends Presenter<MovieScreen> {
     public void onEventMainThread(final GetMoviesEvent event) {
         if (event.getMovies() != null) {
             screen.showMovies(event.getMovies());
+        } else{
+            screen.showError(event.getMessage());
         }
     }
 
     public void showMoviesSearchList(Context context, String movieSearch){
-
-        List<Movie> movieList = MovieDatabase.getDatabase(context).movieDao().getAllMovies();
-        //if(movieList.size() == 0){
-            loadMoviesInBackground(context, movieSearch);
-        //}
-
+        loadMoviesInBackground(context, movieSearch);
     }
 
     public void loadMoviesInBackground(Context context, String movieSearch){

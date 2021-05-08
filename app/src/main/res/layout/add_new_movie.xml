@@ -20,8 +20,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/title"
                 android:paddingStart="5dp"
-                android:paddingEnd="75dp"
-                android:textColor="@color/white" />
+                android:paddingEnd="75dp" />
 
             <EditText
                 android:id="@+id/MovieNameEditText"
@@ -44,8 +43,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/imdbid"
                 android:paddingStart="5dp"
-                android:paddingEnd="58dp"
-                android:textColor="@color/white" />
+                android:paddingEnd="58dp" />
 
             <EditText
                 android:id="@+id/MovieImdbId"
@@ -68,8 +66,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/release_year"
                 android:paddingStart="5dp"
-                android:paddingEnd="22dp"
-                android:textColor="@color/white" />
+                android:paddingEnd="22dp" />
 
             <EditText
                 android:id="@+id/MovieYear"
@@ -93,8 +90,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/type"
                 android:paddingStart="5dp"
-                android:paddingEnd="72dp"
-                android:textColor="@color/white" />
+                android:paddingEnd="72dp" />
 
             <EditText
                 android:id="@+id/MovieType"
@@ -118,8 +114,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/poster"
                 android:paddingStart="5dp"
-                android:paddingEnd="61dp"
-                android:textColor="@color/white" />
+                android:paddingEnd="61dp" />
 
             <EditText
                 android:id="@+id/MoviePoster"

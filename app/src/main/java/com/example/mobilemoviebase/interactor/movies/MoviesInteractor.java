@@ -64,6 +64,7 @@ public class MoviesInteractor {
                     event.setMovies(existingMovies);
                     EventBus.getDefault().post(event);
 
+
                 }
 
                 @Override
@@ -94,7 +95,6 @@ public class MoviesInteractor {
 
                 MovieDatabase.getDatabase(context).movieDao().insertMovieDetails(movieDetails);
                 MovieDetails existingDetails = MovieDatabase.getDatabase(context).movieDao().getMovieDetails(movieDetails.getImdbID());
-                System.out.println(existingDetails.getPoster());
                 event.setMovieDetails(existingDetails);
                 EventBus.getDefault().post(event);
             }
@@ -106,13 +106,14 @@ public class MoviesInteractor {
         });
     }
 
-
+    // Not supported by the API
     public void addMovie(Movie movie){
         Retrofit retrofit = new Retrofit.Builder().baseUrl("https://movie-database-imdb-alternative.p.rapidapi.com/").addConverterFactory(GsonConverterFactory.create()).build();
         movieApi = retrofit.create(MovieApi.class);
         movieApi.addMovie(movie);
     }
 
+    // Not supported by the API
     public void deleteMovie(int id){
         Retrofit retrofit = new Retrofit.Builder().baseUrl("https://movie-database-imdb-alternative.p.rapidapi.com/").addConverterFactory(GsonConverterFactory.create()).build();
         movieApi = retrofit.create(MovieApi.class);

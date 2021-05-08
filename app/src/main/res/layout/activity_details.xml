@@ -7,12 +7,12 @@
 
     <ImageView
         android:id="@+id/movie_unique_poster"
-        android:layout_width="match_parent"
-        android:layout_height="112dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:scaleType="fitXY"
-        android:src="@drawable/movie_lovers"
-        android:contentDescription="@string/movie_lovers" />
+        android:layout_gravity="center"
+        android:contentDescription="@string/movieposter" />
 
     <TextView
         android:id="@+id/tv_length"

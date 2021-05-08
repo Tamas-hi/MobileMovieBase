@@ -105,7 +105,7 @@ public class MovieDetails implements OneOfinlineResponse200 {
 
   @SerializedName("imdbRating")
   @ColumnInfo(name = "imdbrating")
-  private Double imdbRating = null;
+  private String imdbRating = null;
 
   @SerializedName("imdbVotes")
   @ColumnInfo(name = "imdbvotes")
@@ -618,11 +618,11 @@ public class MovieDetails implements OneOfinlineResponse200 {
     this.id = id;
   }
 
-  public Double getImdbRating(){
+  public String getImdbRating(){
     return imdbRating;
   }
 
-  public void setImdbRating(Double imdbRating) {
+  public void setImdbRating(String imdbRating) {
     this.imdbRating = imdbRating;
   }
 

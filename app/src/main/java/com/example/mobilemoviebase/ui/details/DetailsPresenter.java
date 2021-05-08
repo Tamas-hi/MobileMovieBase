@@ -46,22 +46,15 @@ public class DetailsPresenter extends Presenter<DetailsScreen> {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(final GetMoviesEvent event) {
-
+        if (event.getMovieDetails() != null) {
+            screen.showMovieDetails(event.getMovieDetails());
+        } else{
+            screen.showError(event.getMessage());
+        }
     }
 
-    public MovieDetails getMovieDetails(Context context, String ImdbId) {
-        new AsyncTask<Void, Void, Boolean>() {
-
-            @Override
-            protected Boolean doInBackground(Void... voids) {
-                loadMovieDetailsInBackground(context, ImdbId);
-                return true;
-            }
-        }.execute();
-
-
-        MovieDetails movieDetails = MovieDatabase.getDatabase(context).movieDao().getMovieDetails(ImdbId);
-        return movieDetails;
+    public void getMovieDetails(Context context, String ImdbId) {
+        loadMovieDetailsInBackground(context, ImdbId);
     }
 
     public void loadMovieDetailsInBackground(Context context, String imdbId) {
