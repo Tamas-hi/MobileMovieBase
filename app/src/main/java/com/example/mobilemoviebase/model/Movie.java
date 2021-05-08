@@ -25,22 +25,41 @@ import java.util.Objects;
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-23T14:07:28.797Z[GMT]")
+@Entity(tableName = "movies")
 public class Movie {
 
+  @PrimaryKey(autoGenerate = true)
+  @ColumnInfo(name = "id")
+  private int id;
+
   @SerializedName("Title")
+  @ColumnInfo(name = "title")
   private String title = null;
 
   @SerializedName("Year")
+  @ColumnInfo(name = "year")
   private String year = null;
 
   @SerializedName("imdbID")
+  @ColumnInfo(name = "imdbID")
   private String imdbID = null;
 
   @SerializedName("Type")
+  @ColumnInfo(name = "type")
   private String type = null;
 
   @SerializedName("Poster")
+  @ColumnInfo(name = "poster")
   private String poster = null;
+
+
+  public int getId(){
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
 
   public Movie title(String title) {
     this.title = title;

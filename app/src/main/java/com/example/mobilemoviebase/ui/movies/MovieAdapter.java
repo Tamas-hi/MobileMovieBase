@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobilemoviebase.R;
+import com.example.mobilemoviebase.db.MovieDatabase;
+import com.example.mobilemoviebase.model.MovieDetails;
 import com.example.mobilemoviebase.model.MovieResult;
 import com.example.mobilemoviebase.model.Movie;
 import com.example.mobilemoviebase.ui.details.DetailsActivity;
@@ -24,11 +26,10 @@ import java.util.List;
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
     private Context context;
-    private List<MovieResult> movieResult;
-    private MovieResult movies;
+    private List<Movie> movieList;
 
     public MovieAdapter(Context context){
-        movieResult = new ArrayList<>();
+        movieList = new ArrayList<>();
         this.context = context;
     }
 
@@ -42,9 +43,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MovieAdapter.ViewHolder holder, int position) {
-        Movie movie = movies.getSearch().get(position);
+        Movie movie = movieList.get(position);
         holder.TextViewMovie.setText(movie.getTitle());
-        holder.TextViewDirector.setText(movie.getImdbID());
+        holder.TextViewType.setText(movie.getType());
         holder.TextViewReleaseYear.setText(String.valueOf(movie.getYear()));
 
         holder.btnDetails.setOnClickListener(new View.OnClickListener(){
@@ -70,12 +71,16 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return movieResult.size();
+        if(movieList.size() > 10){
+            return 10;
+        } else {
+            return movieList.size();
+        }
     }
 
     protected static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView TextViewMovie;
-        public TextView TextViewDirector;
+        public TextView TextViewType;
         public TextView TextViewReleaseYear;
         public Button btnDetails;
         public ImageButton btnDelete;
@@ -83,7 +88,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         public ViewHolder(View itemView) {
             super(itemView);
             TextViewMovie = (TextView) itemView.findViewById(R.id.movieTitle);
-            TextViewDirector = (TextView) itemView.findViewById(R.id.movieDirector);
+            TextViewType = (TextView) itemView.findViewById(R.id.movieType);
             TextViewReleaseYear = (TextView) itemView.findViewById(R.id.movieYear);
             btnDetails = (Button) itemView.findViewById(R.id.btnDetails);
             btnDelete = (ImageButton) itemView.findViewById(R.id.btnDelete);
@@ -91,14 +96,22 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     }
 
    public void setMovies(List<Movie> movies) {
-
+        movieList.clear();
+        movieList.addAll(movies);
+        notifyDataSetChanged();
    }
 
    public void addMovie(Movie movie){
-
+        movieList.add(movie);
+        notifyItemInserted(movieList.size() -1);
+        MovieDatabase.getDatabase(context).movieDao().insertMovie(movie);
    }
 
    public void deleteMovie(int pos){
+        Movie movieToDelete = movieList.get(pos);
+        movieList.remove(movieToDelete);
+        notifyItemRemoved(pos);
+        MovieDatabase.getDatabase(context).movieDao().deleteMovie(movieToDelete);
 
    }
 }

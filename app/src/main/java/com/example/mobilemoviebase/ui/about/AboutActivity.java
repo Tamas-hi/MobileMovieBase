@@ -2,6 +2,7 @@ package com.example.mobilemoviebase.ui.about;
 
 import android.app.AppComponentFactory;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,7 +26,19 @@ public class AboutActivity extends AppCompatActivity implements AboutScreen {
     }
 
     @Override
-    public void ShowAboutScreen() {
+    public void onStart() {
+        super.onStart();
         aboutPresenter.attachScreen(this);
+    }
+
+    @Override
+    public void onStop() {
+        aboutPresenter.detachScreen();
+        super.onStop();
+    }
+
+    @Override
+    public void showError(String message) {
+        System.out.println(message);
     }
 }

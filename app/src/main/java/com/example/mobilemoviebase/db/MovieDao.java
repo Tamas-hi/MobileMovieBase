@@ -1,6 +1,6 @@
 package com.example.mobilemoviebase.db;
 
-import android.graphics.Movie;
+import com.example.mobilemoviebase.model.Movie;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -17,21 +17,33 @@ import java.util.List;
 public interface MovieDao {
 
     @Query("SELECT * FROM movies")
-    List<MovieDetails> getAllMovies();
+    List<Movie> getAllMovies();
+
+    @Query("SELECT * FROM movieDetails WHERE imdbid = :imdbid")
+    MovieDetails getMovieDetails(String imdbid);
 
     @Query("SELECT * FROM movies WHERE id = :id")
-    MovieDetails getMovieById(int id);
+    MovieDetails getMovieById(long id);
 
     @Insert
-    long insertMovie(MovieDetails movieDetails);
+    long insertMovie(Movie movie);
+
+    @Insert
+    long insertMovieDetails(MovieDetails movieDetails);
 
     @Update
-    void updateMovie(MovieDetails movieDetails);
+    void updateMovie(Movie movie);
 
     @Delete
-    void deleteMovie(MovieDetails movieDetails);
+    void deleteMovie(Movie movie);
+
+    @Query("DELETE FROM movieDetails WHERE id=:id")
+    void deleteMovieDetailsById(long id);
 
     @Query("DELETE FROM movies")
     void deleteAllMovies();
+
+    @Query("DELETE FROM movieDetails")
+    void deleteAllMovieDetails();
 
 }
