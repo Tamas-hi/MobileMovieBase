@@ -40,6 +40,10 @@ public class MovieResult implements OneOfinlineResponse200 {
     this.response = response;
   }
 
+  public MovieResult(){
+
+  }
+
   public MovieResult search(List<Movie> search) {
     this.search = search;
     return this;

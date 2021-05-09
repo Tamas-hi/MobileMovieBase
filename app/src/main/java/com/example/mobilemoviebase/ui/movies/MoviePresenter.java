@@ -1,15 +1,9 @@
 package com.example.mobilemoviebase.ui.movies;
 
 import android.content.Context;
-import android.widget.SearchView;
 
-import com.example.mobilemoviebase.R;
-import com.example.mobilemoviebase.db.MovieDatabase;
-import com.example.mobilemoviebase.model.Movie;
 import com.example.mobilemoviebase.interactor.movies.MoviesInteractor;
 import com.example.mobilemoviebase.interactor.movies.event.GetMoviesEvent;
-import com.example.mobilemoviebase.model.MovieDetails;
-import com.example.mobilemoviebase.model.MovieResult;
 import com.example.mobilemoviebase.network.MovieApi;
 import com.example.mobilemoviebase.ui.Presenter;
 import com.google.gson.Gson;
@@ -19,12 +13,8 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.util.List;
-import java.util.concurrent.Executor;
-
 import javax.inject.Inject;
 
-import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

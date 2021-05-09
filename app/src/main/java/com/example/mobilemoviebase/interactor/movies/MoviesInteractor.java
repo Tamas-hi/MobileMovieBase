@@ -1,14 +1,12 @@
 package com.example.mobilemoviebase.interactor.movies;
 
 import android.content.Context;
-import android.util.Log;
-import android.widget.ImageView;
 
 import com.example.mobilemoviebase.db.MovieDatabase;
 import com.example.mobilemoviebase.interactor.movies.event.GetMoviesEvent;
-import com.example.mobilemoviebase.model.MovieResult;
 import com.example.mobilemoviebase.model.Movie;
 import com.example.mobilemoviebase.model.MovieDetails;
+import com.example.mobilemoviebase.model.MovieResult;
 import com.example.mobilemoviebase.network.MovieApi;
 
 import org.greenrobot.eventbus.EventBus;

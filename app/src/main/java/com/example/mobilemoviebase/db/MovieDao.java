@@ -1,13 +1,11 @@
 package com.example.mobilemoviebase.db;
 
-import com.example.mobilemoviebase.model.Movie;
-
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
-import androidx.room.Update;
 
+import com.example.mobilemoviebase.model.Movie;
 import com.example.mobilemoviebase.model.MovieDetails;
 
 import java.util.List;
@@ -19,11 +17,17 @@ public interface MovieDao {
     @Query("SELECT * FROM movies")
     List<Movie> getAllMovies();
 
+    @Query("SELECT * FROM movieDetails")
+    List<MovieDetails> getAllMovieDetails();
+
     @Query("SELECT * FROM movieDetails WHERE imdbid = :imdbid")
     MovieDetails getMovieDetails(String imdbid);
 
     @Query("SELECT * FROM movies WHERE id = :id")
-    MovieDetails getMovieById(long id);
+    Movie getMovieById(long id);
+
+    @Query("SELECT * FROM movies WHERE title = :title")
+    Movie getMovieByTitle(String title);
 
     @Insert
     long insertMovie(Movie movie);
@@ -31,14 +35,17 @@ public interface MovieDao {
     @Insert
     long insertMovieDetails(MovieDetails movieDetails);
 
-    @Update
-    void updateMovie(Movie movie);
+    @Query("UPDATE movies SET title =:title WHERE id=:id")
+    void updateMovieTitle(long id, String title);
+
+    @Query("UPDATE movieDetails SET plot =:plot WHERE id=:id")
+    void updateMovieDetailsPlot(long id, String plot);
 
     @Delete
     void deleteMovie(Movie movie);
 
-    @Query("DELETE FROM movieDetails WHERE id=:id")
-    void deleteMovieDetailsById(long id);
+    @Delete
+    void deleteMovieDetails(MovieDetails movieDetails);
 
     @Query("DELETE FROM movies")
     void deleteAllMovies();

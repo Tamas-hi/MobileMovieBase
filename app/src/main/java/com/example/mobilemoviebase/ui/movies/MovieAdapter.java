@@ -14,8 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobilemoviebase.R;
 import com.example.mobilemoviebase.db.MovieDatabase;
-import com.example.mobilemoviebase.model.MovieDetails;
-import com.example.mobilemoviebase.model.MovieResult;
 import com.example.mobilemoviebase.model.Movie;
 import com.example.mobilemoviebase.ui.details.DetailsActivity;
 
