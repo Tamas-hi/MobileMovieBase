@@ -13,7 +13,6 @@
 package com.example.mobilemoviebase.network;
 
 import java.util.Objects;
-import java.util.Arrays;
 /**
  * InlineResponse200
  */

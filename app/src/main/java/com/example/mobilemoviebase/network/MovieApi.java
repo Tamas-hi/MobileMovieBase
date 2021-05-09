@@ -1,8 +1,8 @@
 package com.example.mobilemoviebase.network;
 
-import com.example.mobilemoviebase.model.MovieResult;
 import com.example.mobilemoviebase.model.Movie;
 import com.example.mobilemoviebase.model.MovieDetails;
+import com.example.mobilemoviebase.model.MovieResult;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;

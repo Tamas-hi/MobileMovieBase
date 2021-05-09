@@ -16,13 +16,10 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
 
 import com.example.mobilemoviebase.network.OneOfinlineResponse200;
 import com.google.gson.annotations.SerializedName;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
