@@ -1,30 +1,28 @@
 package com.example.mobilemoviebase.interactor.movies.event;
 
 import com.example.mobilemoviebase.model.Movie;
+import com.example.mobilemoviebase.model.MovieDetails;
 
 import java.util.List;
 
 public class GetMoviesEvent {
-    private int code;
+
     private List<Movie> movies;
-    private Throwable throwable;
+
+    private MovieDetails movieDetails;
+
+    private String message;
 
     public GetMoviesEvent(){
 
     }
 
-    public GetMoviesEvent(int code, List<Movie> movies, Throwable throwable) {
-        this.code = code;
+    public GetMoviesEvent(List<Movie> movies) {
         this.movies = movies;
-        this.throwable = throwable;
     }
 
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
+    public GetMoviesEvent(MovieDetails details){
+        this.movieDetails = details;
     }
 
     public List<Movie> getMovies() {
@@ -35,11 +33,21 @@ public class GetMoviesEvent {
         this.movies = movies;
     }
 
-    public Throwable getThrowable() {
-        return throwable;
+    public MovieDetails getMovieDetails() {
+        return movieDetails;
     }
 
-    public void setThrowable(Throwable throwable) {
-        this.throwable = throwable;
+    public void setMovieDetails(MovieDetails movieDetails) {
+        this.movieDetails = movieDetails;
     }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+
 }

@@ -5,8 +5,6 @@ import com.example.mobilemoviebase.model.Movie;
 import java.util.List;
 
 public interface MovieScreen {
-
-    void showMovies(String movieSearchTerm);
-
-    void showMoviesInList(List<Movie> movies);
+    void showMovies(List<Movie> movies);
+    void showError(String message);
 }

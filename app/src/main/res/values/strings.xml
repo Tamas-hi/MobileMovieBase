@@ -2,7 +2,20 @@
     <string name="app_name">MobileMovieBase</string>
     <string name="movie_lovers">movie_lovers</string>
     <string name="fab">fab</string>
-    <string name="search_movies_by_title">Search movies by title</string>
+    <string name="search_movies_by_title">Search movieLists by title</string>
     <string name="deleteicon">deleteIcon</string>
     <string name="details">Details</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="plot">Plot</string>
+    <string name="length">Length</string>
+    <string name="release_year">Release year</string>
+    <string name="director">Director</string>
+    <string name="title">Title</string>
+    <string name="type">Type</string>
+    <string name="imdbid">ImdbId</string>
+    <string name="poster">Poster</string>
+    <string name="this_application_aim_is_to_let_the_user_experience_a_whole_world_of_movies_you_can_search_for_movies_check_its_details_and_you_can_also_add_your_own_movie">This application\'s aim is to let the user experience a whole world of movies! You can search for movies, check its details, and you can also add your own movie!</string>
+    <string name="developed_by_tam_s_hargitai">Developed By Tamás Hargitai</string>
+    <string name="movieposter">moviePoster</string>
 </resources>

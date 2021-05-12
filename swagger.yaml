@@ -1,0 +1,196 @@
+openapi: 3.0.1
+info:
+  title: MobileMovieBase
+  description: This is the MobileMovieBase server.
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: hargitomi97@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+- url: https://movie-database-imdb-alternative.p.rapidapi.com/
+security:
+- APIKeyHeader: []
+tags:
+- name: movie
+  description: Operations about movie
+  externalDocs:
+    description: Find out more
+    url: https://rapidapi.com/rapidapi/api/movie-database-imdb-alternative/details
+paths:
+  /:
+    get:
+      tags:
+      - movie
+      description: Returns a movie by title or a movie with details by IMDB id
+      operationId: getMovie
+      parameters:
+      - name: s
+        in: query
+        description: The title to search for
+        schema:
+          type: string
+      - name: i
+        in: query
+        description: The IMDB id to search for
+        schema:
+           type: string
+      responses:
+        200:
+          description: Movie succesfully fetched.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                 - $ref: '#/components/schemas/MovieResult'
+                 - $ref: '#/components/schemas/MovieWithDetails'
+        404:
+          description: Movie couldn't be found.
+  /addMovie:
+    post:
+      tags:
+      - movie
+      description: Add a movie - For demonstration purposes only - API supports only GET
+      operationId: addMovie
+      requestBody:
+        description: Added movie object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Movie'
+        required: true
+      responses:
+        201:
+          description: Movie succesfully created.
+        404:
+          description: Movie couldn't be created.
+        405:
+          description: POST method not supported.
+      x-codegen-request-body-name: body
+  /deleteMovie/{id}:
+    delete:
+      tags:
+      - movie
+      description: Delete a movie by imdbID. For demonstration purposes only - API supports only GET
+      operationId: deleteMovie
+      parameters:
+      - name: id
+        in: path
+        description: The movie's id that needs to be deleted
+        required: true
+        schema:
+          type: integer
+      responses:
+        204:
+          description: Movie succesfully deleted.
+        404:
+          description: Endpoint does not exist.
+        405:
+          description: DELETE method not supported.
+components:
+  schemas:
+    MovieResult:
+      type: object
+      properties:
+        Movie:
+          type: array
+          items:
+            type: object
+            properties:
+              Title:
+                type: string
+              Year:
+                type: string
+              imdbID:
+                type: string
+              Type:
+                type: string
+              Poster:
+                type: string
+        totalResults:
+          type: integer
+        Response:
+          type: boolean
+    MovieWithDetails:
+      type: object
+      properties:
+        Title:
+          type: string
+        Year:
+          type: string
+        Rated:
+          type: string
+        Released:
+          type: string
+        Runtime:
+          type: string
+        Genre:
+          type: string
+        Director:
+          type: string
+        Writer:
+          type: string
+        Actors:
+          type: string
+        Plot:
+          type: string
+        Language:
+          type: string
+        Country:
+          type: string
+        Awards:
+          type: string
+        Poster:
+          type: string
+        Ratings:
+          type: array
+          items:
+            type: object
+            properties:
+              Source:
+                type: string
+              Value:
+                type: string
+        Metascore:
+          type: integer
+        imdbRating:
+          type: number
+        imdbVotes:
+          type: number
+        imdbID:
+          type: string
+        Type:
+          type: string
+        DVD:
+          type: string
+        BoxOffice:
+          type: string
+        Production:
+          type: string
+        Website:
+          type: string
+        Response:
+          type: boolean
+    Movie:
+      type: object
+      properties:
+        Title:
+          type: string
+        Year:
+          type: string
+        imdbID:
+          type: string
+        Type:
+          type: string
+        Poster:
+          type: string
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      name: x-rapidapi-key
+      in: header

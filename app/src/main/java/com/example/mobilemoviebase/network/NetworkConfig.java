@@ -1,5 +1,5 @@
 package com.example.mobilemoviebase.network;
 
-// TODO Network configuration
 public class NetworkConfig {
+    public static final String ENDPOINT_ADDRESS = "https://movie-database-imdb-alternative.p.rapidapi.com/";
 }

@@ -1,18 +1,17 @@
 package com.example.mobilemoviebase;
 
-import com.example.mobilemoviebase.interactor.movies.MoviesInteractor;
+import com.example.mobilemoviebase.network.NetworkModule;
 import com.example.mobilemoviebase.ui.UIModule;
 import com.example.mobilemoviebase.ui.about.AboutActivity;
 import com.example.mobilemoviebase.ui.details.DetailsActivity;
 import com.example.mobilemoviebase.ui.movies.MovieActivity;
-import com.example.mobilemoviebase.ui.movies.MoviePresenter;
 
 import javax.inject.Singleton;
 
 import dagger.Component;
 
 @Singleton
-@Component(modules = {UIModule.class})
+@Component(modules = {UIModule.class, NetworkModule.class})
 public interface MobileMovieBaseApplicationComponent {
 
     void inject(MovieActivity movieActivity);
@@ -21,5 +20,4 @@ public interface MobileMovieBaseApplicationComponent {
 
     void inject(AboutActivity aboutActivity);
 
-    void inject(MoviesInteractor moviesInteractor);
 }
